@@ -4,22 +4,64 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css">
-    <title>Bus Mall</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Document</title>
 </head>
 <body>
-    <header>Bus Mall</header>
-    <body>
-      <h3>Pich Your Favourite Image</h1>
-      <div id="image-section">
-      <ul>
-          <img id="left-image"></img>
-          <img id="middle-image"></img>
-          <img id="right-image"></img>
-      </ul>
-      </div>  
-    </body>
-    <footer>&copy; By Sukina AbuHammad</footer>
+    <header>
+      <nav> 
+        <h1>ASAC</h1> 
+        <div id="links">
+          <a href="#">Home</a>
+          <a href="#">About</a>
+          <a href="#">Contact</a> 
+        </div>  
+      </nav>  
+    </header>
+    <main>
+        <div id="div1">
+            <form action="newArticle" id="formSection">
+                <fieldset>
+                    <label for="AutherName">Auther Name :   </label>
+                    <input type="text" name="AutherName" id="AutherName">
+                    <br/>
+                    <br/>
+                    <label for="ArticleTitle">ِArticle Title :   </label>
+                    <input type="text" name="ArticleTitle" id="ArticleTitle" >
+                    <br/>
+                    <br/>
+                    <label for="Subject">Subject : </label>
+                    <input type="text" name="Subject" id="Subject">
+                    <br/>
+                    <br/>
+                    <label for="Content">Content : </label>
+                    <br/>
+                    <textarea type="text" name="Content" id="Content" style="width:400px; height:150px;"></textarea>
+                    <br/>
+                    <br/>
+                    <label for="Day">Day : </label>
+                    <input type="text" name="Day" id="Day" maxlength="2" size="2">
+                    <label for="Month">Month : </label>
+                    <input type="text" name="Month" id="Month" maxlength="2" size="2">
+                    <label for="Year" >Year : </label>
+                    <input type="text" name="Year" id="Year" maxlength="4" size="4">
+                    <br/>
+                    <br/>
+                    <input type="submit" value="Submit" id="submit">
+                </fieldset>
+            </form>
+        </div>
+        <div id="div2">
+            <div>
+              <article id="articleSection"></article>
+            </div>
+            
+        </div>
+    </main>
+    <footer>
+        &copy; Sukina
+    </footer>
     <script src="./app.js"></script>
 </body>
 </html>

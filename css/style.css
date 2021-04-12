@@ -1,0 +1,64 @@
+
+nav{
+  position: relative;
+  width: 100%;
+  background-color: gray;
+  text-align:center;
+  height: 50px;
+}
+#links{
+  position: absolute;
+  right:0;
+  top: 0;
+  font-size:20px ;
+  padding-top: 5px;
+}
+#links a{
+  color: white;
+  text-decoration: none;
+  padding-left: 15px;
+}
+nav h1{
+  font-size: 30px;
+  padding-top: 5px;
+  color: white;
+}
+form{
+  width: 40%;
+  background-color: gray;
+  text-align: left;
+  margin-top: 80px;
+}
+#AutherName{
+  float:right;
+  width: 150px;
+}
+#Subject{
+  float:right;
+  width: 150px;
+}
+#ArticleTitle{
+  float:right;
+  width: 150px;
+}
+
+#submit{
+  margin-left: 130px;
+  padding:0px 60px 0px 60px;
+
+}
+#div2{
+  float: right;
+  margin-top: -380px;
+  border: 2px solid black;
+  width: 30%;
+  padding: 10px;
+  text-align: center;
+  background-color: gray;
+}
+#articleSection{
+  background-color: rgb(184, 177, 177);
+  width: 40%;
+  text-align: center;
+}
+ 

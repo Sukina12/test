@@ -1,81 +1,69 @@
 'use strict';
-let restoreValue=null;
-let names=[
-  'jordanriver',
-  'kingtalaldom',
-  'wadihidan',
-  'wadiibnhammad2',
-  'wadimujib',
-  'wadirumnight'
-];
-let imageSection = document.getElementById('image-section');
-let leftImage = document.getElementById('left-image');
-let middleImage = document.getElementById('middle-image');
-let rightImage = document.getElementById('right-image');
-function getRandomNumber(min,max){
-  return Math.floor (Math.random() * (max - min) ) + min;
-}
-function Places(name){
-  this.name = name;
-  this.path = `./images/${name}.jpg`;
-  this.views = 0;
-  this.votes = 0;
+let restoreValue = null;
+function Articles (title,subject,content,autherName,day,month,year){
+  this.title=title;
+  this.subject=subject;
+  this.content=content;
+  this.autherName=autherName;
+  this.day=day;
+  this.month=month;
+  this.year=year;
   getFromLocalStorage();
-  if (restoreValue === null){
-    Places.all.push(this);
-  }
+  // if(restoreValue === null){
+  //   Articles.all.push(this);
+  // }
 }
-Places.all =[];
-for (let i=0; i<names.length; i++){
-  new Places (names[i]);
-}
-storeInLocalStorage();
+Articles.all=[];
 
-function storeInLocalStorage(){
-  localStorage.setItem('places',JSON.stringify(Places.all));
+function setToLocalStorage(){
+  localStorage.setItem('articles',JSON.stringify(Articles.all));
 }
 function getFromLocalStorage(){
-  restoreValue = localStorage.getItem ('places');
-  let normalObjects = JSON.parse(restoreValue);
-  if(restoreValue !== null){
-    Places.all = normalObjects;
+  restoreValue=localStorage.getItem('articles');
+  if (restoreValue !== null){
+    Articles.all = JSON.parse(restoreValue);
   }
 }
-let leftIndex ;
-let middleIndex ;
-let rightIndex ;
-function render(){
-  leftIndex = getRandomNumber (0,names.length);
-  middleIndex = getRandomNumber (0,names.length);
-  rightIndex = getRandomNumber (0,names.length);
 
-  if (leftIndex === rightIndex || leftIndex === middleIndex || middleIndex === rightIndex){
-    render();
-  }
-  leftImage.src = Places.all[leftIndex].path ;
-  leftImage.alt = Places.all[leftIndex].name;
-  Places.all[leftIndex].views++;
-  middleImage.src = Places.all[middleIndex].path ;
-  middleImage.alt = Places.all[middleIndex].name;
-  Places.all[middleIndex].views++;
-  rightImage.src = Places.all[rightIndex].path ;
-  rightImage.alt = Places.all[rightIndex].name;
-  Places.all[rightIndex].views++;
-  storeInLocalStorage();
-}
-render();
-
-imageSection.addEventListener('click',handelClick);
-function handelClick (event){
+let formSection = document.getElementById('formSection');
+formSection.addEventListener('submit',addNewArticle);
+function addNewArticle (event){
   event.preventDefault();
-  if (event.target.id !== 'image-section'){
-    if (event.target.id === leftImage.id)
-      Places.all[leftIndex].votes++;
-    if (event.target.id === middleImage.id)
-      Places.all[middleIndex].votes++;
-    if (event.target.id === rightImage.id)
-      Places.all[rightIndex].votes++;
+  let title= event.target.ArticleTitle.value;
+  let subject= event.target.Subject.value;
+  let content= event.target.Content.value;
+  let autherName= event.target.AutherName.value;
+  let day= event.target.Day.value;
+  let month= event.target.Month.value;
+  let year= event.target.Year.value;
+
+  // new Articles (title,subject,content,autherName,day,month,year);
+  let article = new Articles (title,subject,content,autherName,day,month,year);
+  Articles.all.push(article);
+  setToLocalStorage();
+  formSection.reset();
+  render();
+}
+let result = document.getElementById('articleSection');
+function render(){
+  result.textContent='';
+  for (let i=0; i<Articles.all.length; i++){
+    let h3El = document.createElement('h3');
+    result.appendChild(h3El);
+    h3El.textContent = `${Articles.all[i].title}`;
+    let p1El= document.createElement('p');
+    result.appendChild(p1El);
+    p1El.textContent =`Auther : ${Articles.all[i].autherName}`;
+    let p2El= document.createElement('p');
+    result.appendChild(p2El);
+    p1El.textContent =`Date : ${Articles.all[i].day}-${Articles.all[i].month}-${Articles.all[i].year}`;
+    let p3El= document.createElement('p');
+    result.appendChild(p3El);
+    p3El.textContent =` ${Articles.all[i].subject}`;
+    let p4El= document.createElement('p');
+    result.appendChild(p4El);
+    p4El.textContent =` ${Articles.all[i].content}`;
 
   }
-  storeInLocalStorage();
 }
+
